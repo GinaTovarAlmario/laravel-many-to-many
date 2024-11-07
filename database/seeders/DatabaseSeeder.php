@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             // dipendono dal tipo quindi vanno messi dopo
             TechnologySeeder::class,
             ProjectSeeder::class,
+            ProjectTechnologySeeder::class,
         ]);
     }
 }

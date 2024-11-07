@@ -20,5 +20,10 @@ class ProjectTechnologySeeder extends Seeder
 
         // prendo tutti i techs
         $technologies = Technology::all()->pluck('id');
+
+        // individuo relazione
+        foreach($projects as $project){
+            $project->technologies()->attach($faker->randomElements($technologies,3));
+        }
     }
 }
