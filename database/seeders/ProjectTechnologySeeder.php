@@ -23,7 +23,7 @@ class ProjectTechnologySeeder extends Seeder
 
         // individuo relazione
         foreach($projects as $project){
-            $project->technologies()->attach($faker->randomElements($technologies,3));
+            $project->technologies()->sync($faker->randomElements($technologies,rand(1,3)));
         }
     }
 }
