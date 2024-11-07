@@ -19,6 +19,7 @@
                             <th scope="col">Title</th>
                             <th scope="col">Author</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Technologies</th>
                             <th scope="col">Date</th>
                             <th scope="col">Status</th>
                             <th>Actions</th>
@@ -30,11 +31,22 @@
                                 <th scope="row">{{ $project->title }}</th>
                                 <td>{{ $project->author }}</td>
                                 <td>{{ $project->type->name }}</td>
+                                <td>
+                                    @forelse ($project->technologies as $technology)
+                                        <span class="badge text-bg-success">
+                                            {{ $technology->name }}
+                                        </span>
+                                    @empty
+                                        <span>No Technologies available</span>
+                                    @endforelse
+                                </td>
                                 <td>{{ $project->date }}</td>
                                 <td>{{ $project->status }}</td>
                                 <td>
-                                    <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-sm btn-primary me-2">Show</a>
-                                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning me-2">Edit</a>
+                                    <a href="{{ route('admin.projects.show', $project->id) }}"
+                                        class="btn btn-sm btn-primary me-2">Show</a>
+                                    <a href="{{ route('admin.projects.edit', $project->id) }}"
+                                        class="btn btn-sm btn-warning me-2">Edit</a>
                                     <form action="{{ route('admin.projects.delete', $project->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
@@ -56,10 +68,9 @@
                     </tbody>
                 </table>
                 <div>
-                    {{$projects->links()}}
+                    {{ $projects->links() }}
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
