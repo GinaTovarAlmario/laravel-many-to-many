@@ -29,7 +29,7 @@ class ProjectController extends Controller
         $project = new Project();
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.projects.create',compact('project','types','technologies'));
+        return view('admin.projects.create', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -39,8 +39,13 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $project = Project::create($data);
-        // nuova aggiunta
-        $project->technologies()->sync($data['technologies']);
+        // faccio controllo
+        if (isset($data['technologies'])) {
+            // nuova aggiunta
+            $project->technologies()->sync($data['technologies']);
+        } else {
+            $project->technologies()->detach();
+        }
         return redirect()->route('admin.projects.index');
     }
 
@@ -49,7 +54,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.projects.show',compact('project'));
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -59,7 +64,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.projects.edit', compact('project','types','technologies'));
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
