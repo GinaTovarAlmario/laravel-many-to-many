@@ -8,7 +8,7 @@
                     Creating a New Project
                 </h1>
             </div>
-            {{-- @if ($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -18,7 +18,7 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif --}}
+            @endif
             <form class="col-8 card bg-dark-subtle m-3" method="POST" action="{{ route('admin.projects.store') }}">
                 @csrf
                 <div class="mb-3">
@@ -48,6 +48,21 @@
                         </div>
                     @enderror
                 </div>
+
+                <div class="mb-3">
+                    <label for="proj-tech" class="form-label">Select Technology</label>
+                    @foreach ($technologies as $technology)
+                        <input type="checkbox" name="technologies[]" id="proj-tech" class="btn-check"
+                        value="{{$technology->id}}"
+                        >
+                    @endforeach
+                    @error('type_id')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <input type="text" class="form-control" id="status" name="status" value="{{ old('status') }}">
