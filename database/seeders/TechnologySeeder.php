@@ -12,6 +12,12 @@ class TechnologySeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $techsNames = [
+           'HTML',
+           'CSS',
+           'JS',
+           'Vue',
+           'PHP',
+        ];
     }
 }
