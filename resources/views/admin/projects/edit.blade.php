@@ -5,7 +5,7 @@
         <div class="row justify-content-around">
             <div class="col-12 text-center">
                 <h1>
-                    Editing {{ $project->title}}
+                    Editing {{ $project->title }}
                 </h1>
             </div>
             @if ($errors->any())
@@ -24,7 +24,8 @@
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $project->title) }}">
+                    <input type="text" class="form-control" id="title" name="title"
+                        value="{{ old('title', $project->title) }}">
                     @error('title')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -34,7 +35,7 @@
                 <div class="mb-3">
                     <label for="author" class="form-label">Author</label>
                     <input type="text" class="form-control" id="author" name="author"
-                        value="{{ old('author',$project->author) }}">
+                        value="{{ old('author', $project->author) }}">
                     @error('author')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -44,7 +45,7 @@
                 <div class="mb-3">
                     <label for="date" class="form-label">Date</label>
                     <input type="text" class="form-control" id="date" name="date"
-                        value="{{ old('date',$project->date) }}">
+                        value="{{ old('date', $project->date) }}">
                     @error('date')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -56,7 +57,7 @@
                     @foreach ($technologies as $technology)
                         <div class="form-check">
                             <input type="checkbox" name="technologies[]" id="proj-tech" class="form-check-input"
-                                value="{{ $technology->id }}">
+                                value="{{ $technology->id }}" @if ($project->technologies->contains($technology->id)) checked @endif>
                             <label type="checkbox" name="technologies[]" id="proj-tech" class="form-check-label">
                                 {{ $technology->name }}
                             </label>
@@ -71,7 +72,7 @@
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <input type="text" class="form-control" id="status" name="status"
-                        value="{{ old('status',$project->status)}}">
+                        value="{{ old('status', $project->status) }}">
                     @error('author')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -82,9 +83,7 @@
                     <label for="type_id" class="form-label">Select a Type</label>
                     <select name="type_id" id="type_id" class="form-control">
                         @foreach ($types as $type)
-                            <option value="{{$type->id}}"
-                                @if ($type->id == old('type_id', $project->type_id)) selected @endif
-                                >
+                            <option value="{{ $type->id }}" @if ($type->id == old('type_id', $project->type_id)) selected @endif>
                                 {{ $type->name }}
                             </option>
                         @endforeach
@@ -98,7 +97,7 @@
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" rows="6" name="description">
-                        {{ old('description',$project->description) }}
+                        {{ old('description', $project->description) }}
                     </textarea>
                     @error('description')
                         <div class="alert alert-danger">
@@ -108,7 +107,7 @@
                 </div>
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary me-3">
-                        Update {{$project->title}}
+                        Update {{ $project->title }}
                     </button>
                     <button type="reset" class="btn btn-success me-3">
                         Reset
