@@ -52,9 +52,13 @@
                 <div class="mb-3">
                     <label for="proj-tech" class="form-label">Select Technology</label>
                     @foreach ($technologies as $technology)
-                        <input type="checkbox" name="technologies[]" id="proj-tech" class="btn-check"
-                        value="{{$technology->id}}"
-                        >
+                        <div class="form-check">
+                            <input type="checkbox" name="technologies[]" id="proj-tech" class="form-check-input"
+                                value="{{ $technology->id }}">
+                            <label type="checkbox" name="technologies[]" id="proj-tech" class="form-check-label">
+                                {{ $technology->name }}
+                            </label>
+                        </div>
                     @endforeach
                     @error('type_id')
                         <div class="alert alert-danger">
