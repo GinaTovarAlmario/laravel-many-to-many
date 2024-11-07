@@ -19,6 +19,16 @@
                             <span class="fw-bold text-black">Type: </span> {{ $project->type->name }}
                         </p>
                         <p class="card-text">
+                            <span class="fw-bold text-black">Technologies: </span>
+                            @forelse ($project->technologies as $technology)
+                                <span class="badge text-bg-success">
+                                    {{ $technology->name }}
+                                </span>
+                            @empty
+                                <span>No Technologies available</span>
+                            @endforelse
+                        </p>
+                        <p class="card-text">
                             <span class="fw-bold text-black">Status: </span> {{ $project->status }}
                         </p>
                         <p class="card-text">
