@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\Technology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -16,5 +17,8 @@ class ProjectTechnologySeeder extends Seeder
     {
         //prendo tutti i projects
         $projects = Project::all();
+
+        // prendo tutti i techs
+        $technologies = Technology::all()->pluck('id');
     }
 }
