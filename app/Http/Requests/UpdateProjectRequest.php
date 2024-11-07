@@ -32,6 +32,8 @@ class UpdateProjectRequest extends FormRequest
             'status'=>['required','string','min:3'],
             'type_id'=>['required','numeric','integer','exists:types,id'],
             'description'=>['required','string','min:80'],
+            'technologies'=>['required','array','exists:technologies,id']
+
         ];
     }
 }
