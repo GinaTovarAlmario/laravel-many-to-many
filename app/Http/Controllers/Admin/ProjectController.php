@@ -74,7 +74,13 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $project->update($data);
-        $project->technologies()->sync($data['technologies']);
+          // faccio controllo
+          if (isset($data['technologies'])) {
+            // nuova aggiunta
+            $project->technologies()->sync($data['technologies']);
+        } else {
+            $project->technologies()->detach();
+        }
         return redirect()->route('admin.projects.show', $project);
     }
 
