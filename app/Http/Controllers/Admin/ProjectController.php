@@ -40,7 +40,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $project = Project::create($data);
         // nuova aggiunta
-        $project->technologies()->sync($data['tecnologies']);
+        $project->technologies()->sync($data['technologies']);
         return redirect()->route('admin.projects.index');
     }
 
