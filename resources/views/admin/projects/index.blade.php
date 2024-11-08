@@ -33,7 +33,7 @@
                                 <td>{{ $project->type->name }}</td>
                                 <td>
                                     @forelse ($project->technologies as $technology)
-                                        <span class="badge text-bg-success">
+                                        <span class="badge" style="background-color: {{$technology->color}}">
                                             {{ $technology->name }}
                                         </span>
                                     @empty
